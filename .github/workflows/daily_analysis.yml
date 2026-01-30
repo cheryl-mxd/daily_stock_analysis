@@ -54,9 +54,6 @@ jobs:
       
       - name: 执行股票分析
         env:
-          # 优先使用手动输入的 stock_list，若无则使用仓库配置或默认值
-          STOCK_LIST: ${{ github.event.inputs.stock_list || vars.STOCK_LIST || secrets.STOCK_LIST || '600519' }}
-          
           # ==========================================
           # AI 配置
           # ==========================================
@@ -126,7 +123,9 @@ jobs:
           # ==========================================
           # 自选股配置
           # ==========================================
-          STOCK_LIST: ${{ vars.STOCK_LIST || secrets.STOCK_LIST || '600519' }}
+          # 优先使用手动输入的 stock_list，若无则使用仓库配置或默认值
+          STOCK_LIST: ${{ github.event.inputs.stock_list || vars.STOCK_LIST || secrets.STOCK_LIST || '600519' }}
+          # STOCK_LIST: ${{ vars.STOCK_LIST || secrets.STOCK_LIST || '600519' }}
           
           # ==========================================
           # 运行配置 ⬅️ 新增！
